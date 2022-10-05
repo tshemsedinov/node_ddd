@@ -1,0 +1,29 @@
+{
+  "name": "node_2022_2023",
+  "version": "1.0.0",
+  "description": "NodeJS 2022-2023",
+  "main": "index.js",
+  "dependencies": {
+    "pg": "^8.8.0",
+    "ws": "^8.8.1"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vovadoma/node_ddd.git"
+  },
+  "keywords": [
+    "node",
+    "ddd"
+  ],
+  "author": "vgubarenko@strongsd.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vovadoma/node_ddd/issues"
+  },
+  "homepage": "https://github.com/vovadoma/node_ddd#readme"
+}
