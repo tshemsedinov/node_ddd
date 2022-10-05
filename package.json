@@ -2,15 +2,23 @@
   "name": "node_2022_2023",
   "version": "1.0.0",
   "description": "NodeJS 2022-2023",
-  "main": "index.js",
+  "main": "index.ts",
   "dependencies": {
     "pg": "^8.8.0",
     "ws": "^8.8.1"
   },
   "devDependencies": {
+    "@types/node": "^18.8.2",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "eslint": "^8.24.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec ts-node --files src/index.ts",
+    "build": "tsc --build .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "repository": {
     "type": "git",
