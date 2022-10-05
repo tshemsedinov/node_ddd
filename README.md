@@ -1,1 +1,2 @@
-# node_ddd
+# NodeJS 2022-2023 Metatech University course
+
