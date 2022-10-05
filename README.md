@@ -1,2 +1,2 @@
-# NodeJS 2022-2023 Metatech University course
+# NodeJS 2022-2023 Metatech University Course
 
