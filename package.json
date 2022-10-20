@@ -8,13 +8,17 @@
     "ws": "^8.8.1"
   },
   "devDependencies": {
-    "@types/node": "^18.8.2",
+    "@types/node": "^18.11.2",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
-    "eslint": "^8.24.0"
+    "eslint": "^8.24.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.4"
   },
   "scripts": {
     "dev": "nodemon --exec ts-node --files src/index.ts",
+    "devtest": "nodemon --exec ts-node --files src/test.ts",
     "build": "tsc --build .",
     "test": "jest",
     "test:watch": "jest --watch",

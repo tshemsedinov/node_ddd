@@ -2,9 +2,9 @@
 
 const crypto = require('node:crypto');
 
-const hash = (password) => new Promise((resolve, reject) => {
+const hash = (password: string) => new Promise((resolve, reject) => {
   const salt = crypto.randomBytes(16).toString('base64');
-  crypto.scrypt(password, salt, 64, (err, result) => {
+  crypto.scrypt(password, salt, 64, (err: Error, result: Buffer) => {
     if (err) reject(err);
     resolve(salt + ':' + result.toString('base64'));
   });
