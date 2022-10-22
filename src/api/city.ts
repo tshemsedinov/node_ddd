@@ -1,6 +1,6 @@
 import { Base } from "./base";
 
-export class City extends Base {
+export default class City extends Base {
 
     protected getTable() {
         return 'city';

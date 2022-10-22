@@ -1,14 +1,10 @@
 'use strict';
 
+import config from '../config'
+
 const pg = require('pg');
 
-const pool = new pg.Pool({
-  host: '127.0.0.1',
-  port: 5432,
-  database: 'node_chat',
-  user: 'marcus',
-  password: 'marcus',
-});
+const pool = new pg.Pool(config.db);
 
 const db = (table: string) => ({
 
@@ -20,8 +16,6 @@ const db = (table: string) => ({
     const names = fields.join(', ');
     const sql = `SELECT ${names} FROM ${table}`;
     if (!id) return pool.query(sql);
-    console.log(`${sql} WHERE id = $1`);
-    console.log([id])
     return pool.query(`${sql} WHERE id = $1`, [id]);
   },
 
@@ -61,4 +55,4 @@ const db = (table: string) => ({
   },
 });
 
-export { db };
+export default db;

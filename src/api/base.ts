@@ -2,17 +2,24 @@ export abstract class Base {
 
     protected db: any;
 
+    protected table: string = '';
+
     protected common: Record<string, any>;
 
     protected abstract getTable(): string;
 
     constructor(db: any, common: Record<string, any>) {
-        this.db = db(this.getTable());
+        this.table = this.getTable();
+        this.db = db(this.table);
         this.common = common;
     }
 
-    async read (id: number) {
-        return this.db.read(id);
+    log() {
+        this.common.logger.log();
+    }
+
+    async read (id: number, fields: string[] = ['*']) {
+        return this.db.read(id, fields);
     }
 
     async create({ ...record }) {

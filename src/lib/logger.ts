@@ -1,10 +1,12 @@
 'use strict';
 
+import config from '../config'
+
 const fs = require('node:fs');
 const util = require('node:util');
 const path = require('node:path');
 
-const COLORS = {
+const COLORS: Record<string, any> = {
   info: '\x1b[1;37m',
   debug: '\x1b[1;33m',
   error: '\x1b[0;31m',
@@ -14,8 +16,15 @@ const COLORS = {
 
 const DATETIME_LENGTH = 19;
 
-class Logger {
-  constructor(logPath) {
+export class Logger {
+
+  private readonly path: string;
+
+  private readonly stream: any;
+
+  private readonly regexp: any;
+
+  constructor(logPath: string) {
     this.path = logPath;
     const date = new Date().toISOString().substring(0, 10);
     const filePath = path.join(logPath, `${date}.log`);
@@ -27,7 +36,7 @@ class Logger {
     return new Promise((resolve) => this.stream.end(resolve));
   }
 
-  write(level = 'info', s) {
+  write(level = 'info', s: string) {
     const now = new Date().toISOString();
     const date = now.substring(0, DATETIME_LENGTH);
     const color = COLORS[level];
@@ -37,36 +46,36 @@ class Logger {
     this.stream.write(out);
   }
 
-  log(...args) {
+  log(...args: any) {
     const msg = util.format(...args);
     this.write('info', msg);
   }
 
-  dir(...args) {
+  dir(...args: any) {
     const msg = util.inspect(...args);
     this.write('info', msg);
   }
 
-  debug(...args) {
+  debug(...args: any) {
     const msg = util.format(...args);
     this.write('debug', msg);
   }
 
-  error(...args) {
+  error(...args: any) {
     const msg = util.format(...args).replace(/[\n\r]{2,}/g, '\n');
     this.write('error', msg.replace(this.regexp, ''));
   }
 
-  system(...args) {
+  system(...args: any) {
     const msg = util.format(...args);
     this.write('system', msg);
   }
 
-  access(...args) {
+  access(...args: any) {
     const msg = util.format(...args);
     this.write('access', msg);
   }
 }
 
-const logger = new Logger('./logs');
+const logger = new Logger(config.logger.path);
 export default logger;

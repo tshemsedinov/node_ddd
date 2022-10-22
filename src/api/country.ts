@@ -1,14 +1,9 @@
 import { Base } from "./base";
 
-export class Country extends Base {
+export default class Country extends Base {
 
   protected getTable() {
     return 'country';
-  }
-
-  read(id: number) {
-    console.log('this.db');
-    return super.read(id);
   }
 
   find(mask: string) {

@@ -3,9 +3,10 @@
 const http = require('node:http');
 const path = require('node:path');
 const fs = require('node:fs');
+import logger from './logger';
 
-module.exports = (root, port) => {
-  http.createServer(async (req, res) => {
+export default (root: string, port: number) => {
+  http.createServer(async (req: Record<string, any>, res: Record<string, any>) => {
     const url = req.url === '/' ? '/index.html' : req.url;
     const filePath = path.join(root, url);
     try {
@@ -17,5 +18,5 @@ module.exports = (root, port) => {
     }
   }).listen(port);
 
-  console.log(`Static on port ${port}`);
+  logger.log(`Static on port ${port}`);
 };

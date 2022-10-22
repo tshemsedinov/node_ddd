@@ -1,13 +1,13 @@
 import { Base } from './base'
 
-export class User extends Base {
+export default class User extends Base {
 
   protected getTable() {
     return 'users';
   }
 
   async read(id: number) {
-    return this.db.read(id, ['id', 'login']);
+    return super.read(id, ['id', 'login']);
   }
 
   async create(params: Record<string, string>) {

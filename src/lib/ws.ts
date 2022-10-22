@@ -1,14 +1,14 @@
 'use strict';
 
-const console = require('./logger.ts');
-const { Server } = require('ws');
+import { Server } from 'ws';
+import logger from './logger'
 
-module.exports = (routing, port) => {
+export default (routing: Record<string, any>, port: number) => {
   const ws = new Server({ port });
 
   ws.on('connection', (connection, req) => {
     const ip = req.socket.remoteAddress;
-    connection.on('message', async (message) => {
+    connection.on('message', async (message: string) => {
       const obj = JSON.parse(message);
       const { name, method, args = [] } = obj;
       const entity = routing[name];
@@ -17,16 +17,16 @@ module.exports = (routing, port) => {
       if (!handler) return connection.send('"Not found"', { binary: false });
       const json = JSON.stringify(args);
       const parameters = json.substring(1, json.length - 1);
-      console.log(`${ip} ${name}.${method}(${parameters})`);
+      logger.log(`${ip} ${name}.${method}(${parameters})`);
       try {
         const result = await handler(...args);
         connection.send(JSON.stringify(result.rows), { binary: false });
       } catch (err) {
-        console.error(err);
+        logger.error(err);
         connection.send('"Server error"', { binary: false });
       }
     });
   });
 
-  console.log(`API on port ${port}`);
+  logger.log(`WS API on port ${port}`);
 };

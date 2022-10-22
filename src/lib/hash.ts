@@ -10,4 +10,4 @@ const hash = (password: string) => new Promise((resolve, reject) => {
   });
 });
 
-module.exports = hash;
+export default hash;
