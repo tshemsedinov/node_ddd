@@ -21,3 +21,4 @@ Global:
 1. WS написать свою реализацию для Node
 2. Свой json:api сериализатор
 3. Query конструктор для PG и json:api
+4. Migration PG реализовать
